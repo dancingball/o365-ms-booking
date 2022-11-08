@@ -15,6 +15,7 @@ export const formGetDurationInSeconds = (time: String, point = "") => {
         let dataMinutes = hrsData * 60;
         let tempTime = dayHrs + dataMinutes;
         return tempTime / 60;
+
     }
 
     //P1D

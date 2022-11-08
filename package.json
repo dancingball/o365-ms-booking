@@ -1,53 +1,36 @@
 {
-  "name": "booking-test",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fluentui/react": "^8.110.4",
-    "@fluentui/react-components": "^9.22.0",
-    "@fluentui/web-components": "^2.5.15",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.36",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
-    "@uifabric/styling": "^7.25.1",
-    "axios": "^1.4.0",
-    "classnames": "^2.3.2",
-    "moment": "^2.29.4",
-    "moment-range": "^4.0.2",
-    "moment-timezone": "^0.5.43",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "scheduler": "^0.23.0",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+  "name": "o365-ms-bookings",
+  "version": "0.0.1",
+  "main": "dist/my-element.es.js",
+  "exports": {
+    ".": "./dist/my-element.es.js"
   },
+  "types": "types/my-element.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc && vite build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@adobe/lit-mobx": "^1.0.0",
+    "@fluentui/web-components": "^2.2.0",
+    "@microsoft/mgt": "^2.3.1",
+    "@ui5/webcomponents": "^1.14.3",
+    "@ui5/webcomponents-icons": "^1.0.0-rc.15",
+    "autoprefixer": "^10.4.2",
+    "axios": "^0.24.0",
+    "lit": "^2.0.0",
+    "mobx": "^6.3.6",
+    "moment": "^2.29.1",
+    "moment-range": "^4.0.2",
+    "moment-timezone": "^0.5.34",
+    "twind": "^0.16.16"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "typescript": "^4.3.2",
+    "vite": "^2.6.4"
   }
 }

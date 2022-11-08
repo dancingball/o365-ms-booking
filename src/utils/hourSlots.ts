@@ -1,8 +1,7 @@
-import moment from 'moment';
+import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { formGetDurationInSeconds } from './getDurationAndCurrency';
-import { getJSONStorage } from './setItemStorage';
-// const moment = extendMoment(Moment);
+const moment = extendMoment(Moment);
 
 
 export const getHourSlots = (slotsStartTime: any, slotsEndTime: string, format: number, slotTimeInterval: string, isUTC = false, bufferObj: any) => {
@@ -38,34 +37,4 @@ export const getHourSlots = (slotsStartTime: any, slotsEndTime: string, format: 
      return slots; 
 }
 
-export const staffWorkingHoursSlot = () => {
-    // console.log("selectedStaffMember", this.selectedStaff);
-    if(getJSONStorage('selectedStaff').availabilityIsAffectedByPersonalCalendar) {
-        getAvailabilityPersonalCalendar();
-    };
-    if(!getJSONStorage('selectedStaff').useBusinessHours) {
-        getWorkingStaffHours();
-    };
-    if(getJSONStorage('selectedStaff').useBusinessHours) {
-        getStaffAvailabilityBusinessHours();
-    };
-}
 
-export const getAvailabilityPersonalCalendar = () => {
-// API call and get personal calendar data
-
-}
-
-export const getWorkingStaffHours = () => {
-// get working hours
-
-}
-
-export const getStaffAvailabilityBusinessHours = () => {
-// get staff avaiable businessHours
-
-}
-
-export const getDisableDayOfWeek = (date: string) => {
-    
-}
