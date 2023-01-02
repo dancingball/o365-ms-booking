@@ -13,4 +13,6 @@ export async function selectedStaffMember(selectStaffId: string) {
       setJSONStorage( 'selectedStaff',getJSONStorage('staffMembers').filter((staff:any) => staff?.id === selectStaffId));
       console.log('this.selected date', getStringStorage('selectDate'));
     }
-}
+  }
+
+  

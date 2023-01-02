@@ -13,5 +13,5 @@ export function getMsBookingTenantId(tenantName: String) {
         })
         .catch(function (error: { data: any; }) {
             return error.data;
-    });
+        });
 }

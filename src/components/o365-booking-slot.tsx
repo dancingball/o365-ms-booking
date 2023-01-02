@@ -12,10 +12,12 @@ const useStyles = makeStyles({
         marginTop:'20px'
     }
 
-});
+  });
+interface props {
+    timeSlots: any[]
+}
 
-
-function Slot(){
+const Slot:React.FC<props> = ({timeSlots}) => {
     const styles = useStyles();
     const hoverStyle = mergeStyles({
         selectors: {
@@ -30,27 +32,15 @@ function Slot(){
     const slotItem = mergeStyles('ms-Grid-col ms-lg4', styles.slot);
     return(
         <>
-             <div className={slotArea}>                
-                <div className={slotItem}>
-                    <div className={hoverStyle}>
-                        8:00 am
+             <div className={slotArea}>      
+                { timeSlots && timeSlots.length > 0 && timeSlots.map((item:any)=>(
+                    <div className={slotItem}>
+                        <div className={hoverStyle}>
+                            {item}
+                        </div>
                     </div>
-                </div>
-                <div className={slotItem}>
-                    <div className={hoverStyle}>
-                        8:00 am
-                    </div>
-                </div>
-                <div className={slotItem}>
-                    <div className={hoverStyle}>
-                        8:00 am
-                    </div>
-                </div>
-                <div className={slotItem}>
-                    <div className={hoverStyle}>
-                        8:00 am
-                    </div>
-                </div>
+                ))}
+               
             </div>
         </>
     )
