@@ -49,7 +49,7 @@ export async function makeServiceData (services: any) {
 }
 
 export async function setService(service: any, selectedDate: string) {
-    debugger;
+    // debugger;
     const defaultDuration = formGetDurationInSeconds(service?.defaultDuration);
     const postbuffer = formGetDurationInSeconds(service?.postBuffer);
     const prebuffer = formGetDurationInSeconds(service?.preBuffer);
@@ -90,9 +90,9 @@ export async function getDateOnServiceSelect(date: any) {
 
 export async function setSelectedServiceCustomQuestions(selectedServiceId: any) {
     try {
-      const selectedService = await getCustomQuestion(selectedServiceId);
-      console.log("setSelectedServiceCustomQuestions ~ selectedService", selectedService)
-
+        const selectedService = await getCustomQuestion(selectedServiceId);
+        console.log("setSelectedServiceCustomQuestions ~ selectedService", selectedService)
+        
     } catch (error) {
       console.log(error);
     }
@@ -129,11 +129,6 @@ export async function resetSelectService() {
     // this.selectedServiceStaffMembers = [];
     // this.bookingSlots = [];
   }
-
-
-
-
-
 
 // export async function bookingServices() {
 //     try {
