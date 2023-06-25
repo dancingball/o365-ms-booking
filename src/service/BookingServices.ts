@@ -5,6 +5,13 @@ import { httpservice } from "./httpservice";
 import { constants } from "../constants/constant";
 const businessid = localStorage.getItem('businessId');
 
+export function intializa(data: { accessToken: string; businessid: string; }) {
+    if (data.accessToken && data.businessid) {
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('businessId', data.businessid);
+    }
+
+}
 
 export function getBusinessData() {
     // solutions/
