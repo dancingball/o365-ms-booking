@@ -15,7 +15,6 @@ export function intializa(data: { accessToken: string; businessid: string; }) {
 
 export function getBusinessData() {
     // solutions/
-    debugger;
     return httpservice()
         .get(`${constants.API.BOOKING_BUSINESSES_URL}/${businessid}`)
         .then(function ({ data }: any) {            
@@ -28,11 +27,9 @@ export function getBusinessData() {
 }
 
 export function getBookingServices() {
-    debugger;
     return httpservice()
         .get(`${constants.API.BOOKING_BUSINESSES_URL}/${businessid}/${constants.API.SERVICES}`)
         .then((data:any) => {
-            debugger;
             return data.value;
         })
         .catch(function (error: { data: any; }) {

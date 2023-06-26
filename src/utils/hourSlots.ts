@@ -36,5 +36,3 @@ export const getHourSlots = (slotsStartTime: any, slotsEndTime: string, format: 
      }
      return slots; 
 }
-
-

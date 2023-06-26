@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 
 import Header from './components/o365-booking-header';
 import Footer from './components/o365-booking-footer';
 import Services from './components/o365-booking-services';
-import TimeArea from './components/o365.booking.time';
+import TimeArea from './components/o365-booking-time';
 import Form from './components/o365-booking-form';
 import { makeStyles } from '@fluentui/react-components';
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
+import { initialize } from './storage/book';
 initializeIcons();
 
 const useMainStyles = makeStyles({
@@ -25,15 +26,33 @@ const useMainStyles = makeStyles({
   },
 });
 
-function App() {
+function App(props: any) {
   const classes = useMainStyles();
+  const [loading, setLoading] = useState(true);
+  const [service, setService] = useState('');
+  const selectService = (service: any) => {
+    setService(service);
+  }
+
+  useEffect(() => {
+    initialize();
+    setLoading(false);
+  }, [])
+
+
   return (
     <div className="App">
       <div className={classes.root}>
         <Header />
-        <Services />
-        <TimeArea />
-        <Form />
+        {loading && <div>
+          <p> loading... </p>
+        </div>}
+        {!loading && 
+        <>
+          <Services selectService={selectService}/>
+          <TimeArea service={service}/>
+          <Form />
+        </>}
         <Footer/>
       </div>
     </div>

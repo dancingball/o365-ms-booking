@@ -1,10 +1,10 @@
 import { makeStyles, shorthands,Button} from '@fluentui/react-components';
 import { mergeStyles } from '@uifabric/styling';
-
+import { Key, useCallback, useEffect, useState } from 'react';
+import ServiceItem from './o365-booking-serviceItem';
+import { getJSONStorage } from '../utils/setItemStorage';
 const useStyles = makeStyles({
     title: {
-        
-        fontSize:'18px',
         fontFamily: '"WF-Segoe-UI-Light", "Segoe UI Light", "Segoe WP Light", "Segoe UI", Tahoma, Arial, Sans-Serif',
         fontWeight: 'normal',
         opacity: '0.9',
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
         borderTopColor:'#eaeaea',
         marginRight:'4%',
         width:'46%',
-        height:'70px'
+        height:'80px'
     },
     labelRight:{
         borderTopWidth: '1px',
@@ -29,35 +29,49 @@ const useStyles = makeStyles({
         borderTopColor:'#eaeaea',
         width:'46%',
         marginLeft:'4%',
-        height:'70px'
-    }
+        height:'80px'
+    },
+
   });
 
-function Services(){
+interface props {
+    selectService: (id: string) => void
+}
+
+const Services:React.FC<props> = ({selectService}) => {
     const styles = useStyles();
-    const labelLeftClass = mergeStyles('ms-Grid-col ms-lg6', styles.labelLeft);
+    const labelLeftClass = mergeStyles('ms-Grid-col ms-lg2', styles.labelLeft);
     const labelRightClass = mergeStyles('ms-Grid-col ms-lg6', styles.labelRight);
+    const [service, setService] = useState<any>();
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        let sessionServices = getJSONStorage('services');
+        if (sessionServices) {
+            setServices(sessionServices);
+        }
+    }, [])
+
+    const onSelectService = (service: any) => {
+        selectService(service);
+        setService(service);
+    }
+
     return(
         <>
             <div>
                 <div className={styles.titleArea}>
-                    <h1 id='serviceTitle' className={styles.title}>Select service</h1>
+                    <h1 id='serviceTitle' className={styles.title}>{(service && service?.displayName) ? `Select service`: service?.displayName}</h1>
                     <div className="ms-Grid" >
                         <div className="ms-Grid-row">
-                            <div className={labelLeftClass}>
-                                <Button appearance="subtle" >
-                                    Subtle
-                                </Button>
+                            {services && services?.map((service: any, index: number) => 
+                             <div key={service?.id} className={`${ index % 2 === 0? labelLeftClass: labelRightClass}`} onClick={e => {
+                                e.preventDefault();
+                                onSelectService(service);
+                            }}>
+                                 <ServiceItem service={service}/>
                             </div>
-                            <div className={labelRightClass}>
-                                aaa
-                            </div>
-                            <div className={labelLeftClass}>
-                                aaa
-                            </div>
-                            <div className={labelRightClass}>
-                                aaa
-                            </div>
+                        )}
                         </div>
                     </div>
                     

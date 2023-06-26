@@ -1,7 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { makeStyles, shorthands} from '@fluentui/react-components';
 
-import { Calendar,ThemeProvider } from '@fluentui/react';
+import React, { useState, useEffect,useRef  } from "react";
+import { makeStyles, shorthands,Select} from '@fluentui/react-components';
+
+// import { fluentCalendar, provideFluentDesignSystem } from '@fluentui/web-components';
+
+
+import { Calendar,ICalendarStyles ,mergeStyles } from '@fluentui/react';
+import Slot from './o365-booking-slot';
+
+// provideFluentDesignSystem().register(fluentCalendar());
+  
 
 const useStyles = makeStyles({
     title: {
@@ -16,15 +24,52 @@ const useStyles = makeStyles({
         ...shorthands.padding('16px', '0px', '16px','0px'),
         boxShadow: '0 -2px 6px 0 rgba(0, 0, 0, 0.1)'
     },
-
+    staffSelectTitle:{
+        textAlign:'left',
+        fontSize:'18px',
+        marginTop:'20px'
+    },
+    staffSelect:{
+        marginTop:'20px',
+        width:'80%'    
+    },
+    calendar:{
+        textSize:'20px',
+        fontSize:'20px',
+    }
+   
   });
 
+//   const customCalendarStyles: Partial<ICalendarStyles> = {
+//         dayWrapper: { fontSize: '14px' },
+//         year: { fontSize: '14px' },
+//         weekText: { fontSize: '14px' }
+//   };
 
+  
+interface props {
+    service: any
+}
 
-function TimeArea(){
-   
+const TimeArea:React.FC<props> = ({service}) => {
+    console.log(service);
     const styles = useStyles();
+    const staffSelectTitle = mergeStyles('ms-Grid-row', styles.staffSelectTitle);
 
+    const today = new Date();
+    const [selectedDate, setSelectedDate] = useState(today);
+    const handleSelectDate = (date:any) => {
+        setSelectedDate(date);
+      };
+    const calendarRef = useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        const calendarElement = calendarRef.current;
+        const buttons = calendarElement?.querySelectorAll('button');
+            buttons?.forEach((button:any) => {
+            button.classList.add('button-font-customized');
+        });
+    }, [])
+   
     return(
         <>
             <div>
@@ -32,18 +77,33 @@ function TimeArea(){
                     <h1 id='timeTitle' className={styles.title}>Select time</h1>
                     <div className="ms-Grid" >
                         <div className="ms-Grid-row">
-                            <div className="ms-Grid-col ms-lg6">
+                            <div className="ms-Grid-col ms-lg1"></div>
+                            <div className="ms-Grid-col ms-lg5" >
                                 <Calendar showMonthPickerAsOverlay={true}
-                                        showGoToToday={false}                                             
+                                        showGoToToday={false} 
+                                        minDate={today}
+                                        onSelectDate={handleSelectDate}
+                                        today={selectedDate}
+                                        value={selectedDate}   
+                                        // styles={customCalendarStyles}
+                                        id="calendar"
+                                        ref={calendarRef}
+                                        // size="'large'"
+                                        className={styles.calendar}                                       
                                         />
+                                {/* <fluent-calendar></fluent-calendar> */}
                             </div>                    
                             <div className="ms-Grid-col ms-lg6">
-                                <div className="ms-Grid-row">
-                                    a
+                                <div className={staffSelectTitle}>
+                                
+                                    <span> Select staff (optional)</span>
+                                    <Select appearance="outline" className={styles.staffSelect} >
+                                        <option>Red</option>
+                                        <option>Green</option>
+                                        <option>Blue</option>
+                                    </Select>
                                 </div>
-                                <div className="ms-Grid-row">
-                                    a
-                                </div>
+                               <Slot />
                             </div>
                         </div>
                     </div>  
@@ -51,6 +111,9 @@ function TimeArea(){
             </div>
         </>
     );
+
+   
 }
 
 export default TimeArea;
+
