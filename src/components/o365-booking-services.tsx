@@ -3,6 +3,8 @@ import { mergeStyles } from '@uifabric/styling';
 import { Key, useCallback, useEffect, useState } from 'react';
 import ServiceItem from './o365-booking-serviceItem';
 import { getJSONStorage } from '../utils/setItemStorage';
+import { getBookingServices } from '../service/BookingServices';
+import { bookingServiceData } from '../constants/res';
 const useStyles = makeStyles({
     title: {
         fontFamily: '"WF-Segoe-UI-Light", "Segoe UI Light", "Segoe WP Light", "Segoe UI", Tahoma, Arial, Sans-Serif',
@@ -42,14 +44,21 @@ const Services:React.FC<props> = ({selectService}) => {
     const styles = useStyles();
     const labelLeftClass = mergeStyles('ms-Grid-col ms-lg2', styles.labelLeft);
     const labelRightClass = mergeStyles('ms-Grid-col ms-lg6', styles.labelRight);
+    const [loading, setLoading] = useState(true);
     const [service, setService] = useState<any>();
     const [services, setServices] = useState([]);
-
+    // const services = bookingServiceData;
     useEffect(() => {
-        let sessionServices = getJSONStorage('services');
-        if (sessionServices) {
-            setServices(sessionServices);
+        async function fetchServices(){
+            let myservices = await getBookingServices();
+            // let myservices = bookingServiceData;
+            debugger;
+            if (myservices) {
+                setServices(myservices);
+            }
+            setLoading(false);
         }
+        fetchServices();    
     }, [])
 
     const onSelectService = (service: any) => {
@@ -61,10 +70,12 @@ const Services:React.FC<props> = ({selectService}) => {
         <>
             <div>
                 <div className={styles.titleArea}>
-                    <h1 id='serviceTitle' className={styles.title}>{(service && service?.displayName) ? `Select service`: service?.displayName}</h1>
+                    {!loading && <h1 id='serviceTitle' className={styles.title}>{(service && service?.displayName) ? service?.displayName:`Select service`}</h1>}
+                    {loading && <h1 id='serviceTitle' className={styles.title}>Loading Services...</h1>}
+
                     <div className="ms-Grid" >
                         <div className="ms-Grid-row">
-                            {services && services?.map((service: any, index: number) => 
+                            {services && services.length > 0 && services?.map((service: any, index: number) => 
                              <div key={service?.id} className={`${ index % 2 === 0? labelLeftClass: labelRightClass}`} onClick={e => {
                                 e.preventDefault();
                                 onSelectService(service);

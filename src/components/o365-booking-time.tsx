@@ -7,6 +7,8 @@ import { makeStyles, shorthands,Select} from '@fluentui/react-components';
 
 import { Calendar,ICalendarStyles ,mergeStyles } from '@fluentui/react';
 import Slot from './o365-booking-slot';
+import { getStaffMembers } from "../service/BookingServices";
+import { getJSONStorage } from "../utils/setItemStorage";
 
 // provideFluentDesignSystem().register(fluentCalendar());
   
@@ -52,16 +54,20 @@ interface props {
 }
 
 const TimeArea:React.FC<props> = ({service}) => {
-    console.log(service);
+
     const styles = useStyles();
     const staffSelectTitle = mergeStyles('ms-Grid-row', styles.staffSelectTitle);
 
     const today = new Date();
     const [selectedDate, setSelectedDate] = useState(today);
+    const [staffs, setStaffs] = useState<any[]>([]);
+
     const handleSelectDate = (date:any) => {
         setSelectedDate(date);
-      };
+    };
+
     const calendarRef = useRef<HTMLDivElement>(null);
+    
     useEffect(()=>{
         const calendarElement = calendarRef.current;
         const buttons = calendarElement?.querySelectorAll('button');
@@ -69,7 +75,26 @@ const TimeArea:React.FC<props> = ({service}) => {
             button.classList.add('button-font-customized');
         });
     }, [])
-   
+    
+    useEffect(() => {
+        async function fetchStaffs() {
+            let myStaffs = getJSONStorage('staffMembers');
+            console.log('this is staffs')
+            console.log(myStaffs)
+
+            const filterMembers = myStaffs.filter((staff:any) => {
+                if (service.staffMemberIds.includes(staff?.id)) {
+                  return staff;
+                }
+            });
+            debugger;
+            let currentStaffs = [{id: 'anyone', displayName: 'Anyone'},...filterMembers] 
+            setStaffs(currentStaffs);
+        }
+        if(service)
+            fetchStaffs();
+    }, [service])
+
     return(
         <>
             <div>
@@ -97,10 +122,11 @@ const TimeArea:React.FC<props> = ({service}) => {
                                 <div className={staffSelectTitle}>
                                 
                                     <span> Select staff (optional)</span>
+
                                     <Select appearance="outline" className={styles.staffSelect} >
-                                        <option>Red</option>
-                                        <option>Green</option>
-                                        <option>Blue</option>
+                                        {staffs && staffs.length > 0 && staffs.map((staff: any) => (
+                                            <option value={staff?.id}>{staff?.displayName}</option>)
+                                        )}
                                     </Select>
                                 </div>
                                <Slot />

@@ -1,5 +1,5 @@
 import { initializeData } from "../constants/constant";
-import { bookingServiceData, busniessData } from "../constants/res";
+import { bookingServiceData, busniessData, staffMembersData } from "../constants/res";
 import { getBookingServices, getBusinessData, getStaffMembers } from "../service/BookingServices";
 import moment from 'moment';
 import { formGetDurationInSeconds } from "../utils/getDurationAndCurrency";
@@ -12,7 +12,6 @@ export function initialize() {
       setStringStorage('accessToken', data.accessToken);
       setStringStorage('businessId', data.businessid);
     }
-    debugger;
     setJSONStorage('initializeDataObj', data);
     setbookingBusinesses();
     bookingServices();
@@ -21,13 +20,13 @@ export function initialize() {
 
 export async function bookingServices() {
     try {
-        // const services = await getBookingServices();
-        const services = bookingServiceData.value;
+        const services = await getBookingServices();
+        debugger;
+        // const services = bookingServiceData;
         console.log("lion service");
         console.log(services);
-        let myServices = makeServiceData(services)
+        makeServiceData(services)
 
-        setJSONStorage('services', myServices);
     } catch (error) {
         console.log(error);
     }
@@ -35,12 +34,13 @@ export async function bookingServices() {
 
 
 export async function makeServiceData (services: any) {
+    setJSONStorage('services', services);
     const currentDate = moment(new Date()).format('YYYY-MM-DD');
-    let myServices = services.map((service: any) => {
+    let initializeDataObj = getJSONStorage('initializeDataObj');
+    services.map((service: any) => {
         debugger;
         setService(service, currentDate)
         setJSONStorage(`serviceCustomQuestions["${service.id}"]`,service?.customQuestions);
-        let initializeDataObj = getJSONStorage('initializeDataObj');
         if (initializeDataObj && initializeDataObj.default_service.includes(service.id)) { 
             setJSONStorage('service',service);
         }
@@ -85,8 +85,9 @@ export async function  setbookingBusinesses() {
 
 export async function bookingSaffMembers() {
     try {
-      const staff = await getStaffMembers();
-      setJSONStorage('staffMembers', staff);
+        // const staff = await getStaffMembers();
+        const staff = staffMembersData;
+        setJSONStorage('staffMembers', staff);
     } catch (error) {
       console.log(error);
     }

@@ -10,7 +10,6 @@ export function intializa(data: { accessToken: string; businessid: string; }) {
         localStorage.setItem('accessToken', data.accessToken);
         localStorage.setItem('businessId', data.businessid);
     }
-
 }
 
 export function getBusinessData() {
@@ -29,8 +28,9 @@ export function getBusinessData() {
 export function getBookingServices() {
     return httpservice()
         .get(`${constants.API.BOOKING_BUSINESSES_URL}/${businessid}/${constants.API.SERVICES}`)
-        .then((data:any) => {
-            return data.value;
+        .then((res:any) => {
+            debugger;
+            return res?.data?.value;
         })
         .catch(function (error: { data: any; }) {
             return error.data;

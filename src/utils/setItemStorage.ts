@@ -1,5 +1,4 @@
 export function setJSONStorage (field:string, item:any) {
-    debugger;
     if(!item) return; 
     localStorage.setItem(field, JSON.stringify(item));
 }

@@ -81,9 +81,7 @@ export const busniessData = {
     }
 }
 
-export const bookingServiceData = {
-    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#solutions/bookingBusinesses('TestBusiness%40dwsnow.com')/services",
-    "value": [
+export const bookingServiceData =  [
         {
             "id": "10c148c8-c8a5-45e2-85f7-c50e8d28d59c",
             "displayName": "Multiple attendees",
@@ -733,8 +731,503 @@ export const bookingServiceData = {
             ]
         }
     ]
-}
 
-export const staffMembersData = {
-
-}
+export const staffMembersData = [
+    {
+        "@odata.type": "#microsoft.graph.bookingStaffMember",
+        "id": "b4d51ef9-c136-4b96-b9e4-2e6877af7329",
+        "displayName": "Debayo Graham",
+        "emailAddress": "techd2@dwsnow.com",
+        "availabilityIsAffectedByPersonalCalendar": true,
+        "role": "guest",
+        "useBusinessHours": false,
+        "isEmailNotificationEnabled": false,
+        "timeZone": "",
+        "workingHours": [
+            {
+                "day": "sunday",
+                "timeSlots": []
+            },
+            {
+                "day": "monday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "wednesday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "thursday",
+                "timeSlots": []
+            },
+            {
+                "day": "friday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "saturday",
+                "timeSlots": []
+            }
+        ]
+    },
+    {
+        "@odata.type": "#microsoft.graph.bookingStaffMember",
+        "id": "9e5f680a-8e51-41de-80d2-675d6545c73f",
+        "displayName": "Christopher Hunt",
+        "emailAddress": "info@wpintegrate.com",
+        "availabilityIsAffectedByPersonalCalendar": false,
+        "role": "viewer",
+        "useBusinessHours": true,
+        "isEmailNotificationEnabled": false,
+        "timeZone": "",
+        "workingHours": [
+            {
+                "day": "sunday",
+                "timeSlots": []
+            },
+            {
+                "day": "monday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "wednesday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "friday",
+                "timeSlots": [
+                    {
+                        "startTime": "08:00:00.0000000",
+                        "endTime": "17:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "saturday",
+                "timeSlots": []
+            }
+        ]
+    },
+    {
+        "@odata.type": "#microsoft.graph.bookingStaffMember",
+        "id": "cc9d5356-27cb-48ef-8cee-19246656399e",
+        "displayName": "Room 4",
+        "emailAddress": "rajutestdelete@dwsnow.com",
+        "availabilityIsAffectedByPersonalCalendar": false,
+        "role": "guest",
+        "useBusinessHours": true,
+        "isEmailNotificationEnabled": false,
+        "timeZone": "",
+        "workingHours": [
+            {
+                "day": "sunday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "monday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "wednesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "friday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "saturday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "@odata.type": "#microsoft.graph.bookingStaffMember",
+        "id": "4d48c82e-f1dd-43a2-939a-9288734c38db",
+        "displayName": "Dwayne Walters",
+        "emailAddress": "techd1@dwsnow.com",
+        "availabilityIsAffectedByPersonalCalendar": true,
+        "role": "guest",
+        "useBusinessHours": true,
+        "isEmailNotificationEnabled": false,
+        "timeZone": "",
+        "workingHours": [
+            {
+                "day": "sunday",
+                "timeSlots": []
+            },
+            {
+                "day": "monday",
+                "timeSlots": [
+                    {
+                        "startTime": "06:00:00.0000000",
+                        "endTime": "14:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "06:00:00.0000000",
+                        "endTime": "14:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "wednesday",
+                "timeSlots": [
+                    {
+                        "startTime": "06:00:00.0000000",
+                        "endTime": "21:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "06:00:00.0000000",
+                        "endTime": "14:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "friday",
+                "timeSlots": [
+                    {
+                        "startTime": "06:00:00.0000000",
+                        "endTime": "14:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "saturday",
+                "timeSlots": []
+            }
+        ]
+    },
+    {
+        "@odata.type": "#microsoft.graph.bookingStaffMember",
+        "id": "ae15a660-e9c6-427b-b336-8a3a92b634e6",
+        "displayName": "Room 1",
+        "emailAddress": "dilipgenex125@gmail.com",
+        "availabilityIsAffectedByPersonalCalendar": false,
+        "role": "guest",
+        "useBusinessHours": true,
+        "isEmailNotificationEnabled": false,
+        "timeZone": "",
+        "workingHours": [
+            {
+                "day": "sunday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "monday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "wednesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "friday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "saturday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "@odata.type": "#microsoft.graph.bookingStaffMember",
+        "id": "94099d9b-526b-4a38-8d63-d41c0e92d38e",
+        "displayName": "Room 2",
+        "emailAddress": "dilipgenex132@gmail.com",
+        "availabilityIsAffectedByPersonalCalendar": false,
+        "role": "guest",
+        "useBusinessHours": true,
+        "isEmailNotificationEnabled": false,
+        "timeZone": "",
+        "workingHours": [
+            {
+                "day": "sunday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "monday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "wednesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "friday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "saturday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "@odata.type": "#microsoft.graph.bookingStaffMember",
+        "id": "e275ba58-1d40-48d7-a499-a3fc6a42ebb2",
+        "displayName": "Room 3",
+        "emailAddress": "dilipgenex127@gmail.com",
+        "availabilityIsAffectedByPersonalCalendar": false,
+        "role": "guest",
+        "useBusinessHours": true,
+        "isEmailNotificationEnabled": false,
+        "timeZone": "",
+        "workingHours": [
+            {
+                "day": "sunday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "monday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "tuesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "wednesday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "thursday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "friday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            },
+            {
+                "day": "saturday",
+                "timeSlots": [
+                    {
+                        "startTime": "00:00:00.0000000",
+                        "endTime": "06:00:00.0000000"
+                    }
+                ]
+            }
+        ]
+    }
+]
