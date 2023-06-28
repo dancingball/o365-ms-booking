@@ -8,7 +8,7 @@ import { makeStyles, shorthands,Select} from '@fluentui/react-components';
 import { Calendar,ICalendarStyles ,mergeStyles } from '@fluentui/react';
 import Slot from './o365-booking-slot';
 import { getStaffMembers } from "../service/BookingServices";
-import { getJSONStorage } from "../utils/setItemStorage";
+import { getJSONStorage, getStringStorage } from '../utils/setItemStorage';
 
 // provideFluentDesignSystem().register(fluentCalendar());
   
@@ -77,7 +77,7 @@ const TimeArea:React.FC<props> = ({service}) => {
     }, [])
     
     useEffect(() => {
-        async function fetchStaffs() {
+        async function initDataForService() {
             let myStaffs = getJSONStorage('staffMembers');
             console.log('this is staffs')
             console.log(myStaffs)
@@ -87,12 +87,18 @@ const TimeArea:React.FC<props> = ({service}) => {
                   return staff;
                 }
             });
-            debugger;
             let currentStaffs = [{id: 'anyone', displayName: 'Anyone'},...filterMembers] 
             setStaffs(currentStaffs);
+
+            const minLeadDate = getStringStorage('servicesSelectedDate[service.id]');
+            if(minLeadDate) {
+                getDateOnServiceSelect(minLeadDate);
+            // this.getServiceCalenderView();
+            }
         }
-        if(service)
-            fetchStaffs();
+        if(service) {
+            initDataForService();
+        }
     }, [service])
 
     return(

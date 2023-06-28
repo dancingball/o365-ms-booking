@@ -1,9 +1,9 @@
 import { initializeData } from "../constants/constant";
 import { bookingServiceData, busniessData, staffMembersData } from "../constants/res";
-import { getBookingServices, getBusinessData, getStaffMembers } from "../service/BookingServices";
+import { getBookingServices, getBusinessData, getCustomQuestion, getStaffMembers } from "../service/BookingServices";
 import moment from 'moment';
 import { formGetDurationInSeconds } from "../utils/getDurationAndCurrency";
-import { getJSONStorage, setJSONStorage, setStringStorage } from '../utils/setItemStorage';
+import { getJSONStorage, setJSONStorage, setStringStorage, getStringStorage } from '../utils/setItemStorage';
 
 export function initialize() {    
     const data = initializeData;
@@ -21,7 +21,6 @@ export function initialize() {
 export async function bookingServices() {
     try {
         const services = await getBookingServices();
-        debugger;
         // const services = bookingServiceData;
         console.log("lion service");
         console.log(services);
@@ -32,26 +31,25 @@ export async function bookingServices() {
     }
 }
 
-
 export async function makeServiceData (services: any) {
     setJSONStorage('services', services);
     const currentDate = moment(new Date()).format('YYYY-MM-DD');
     let initializeDataObj = getJSONStorage('initializeDataObj');
-    services.map((service: any) => {
-        debugger;
-        setService(service, currentDate)
-        setJSONStorage(`serviceCustomQuestions["${service.id}"]`,service?.customQuestions);
-        if (initializeDataObj && initializeDataObj.default_service.includes(service.id)) { 
-            setJSONStorage('service',service);
-        }
-        // if (!initializeDataObj || !initializeDataObj?.default_service) { 
+    if (services && services.length > 0)
+        services.map((service: any) => {
+            setService(service, currentDate)
+            setJSONStorage(`serviceCustomQuestions["${service.id}"]`, service?.customQuestions);
+            if (initializeDataObj && initializeDataObj.default_service.includes(service.id)) { 
+                setJSONStorage('service',service);
+            }
+        // if (!initializeDataObj || !initializeDataObj?.default_service) {
         //     return service;
         // }
     })
 }
 
 export async function setService(service: any, selectedDate: string) {
-
+    debugger;
     const defaultDuration = formGetDurationInSeconds(service?.defaultDuration);
     const postbuffer = formGetDurationInSeconds(service?.postBuffer);
     const prebuffer = formGetDurationInSeconds(service?.preBuffer);
@@ -68,6 +66,35 @@ export async function setService(service: any, selectedDate: string) {
       const date = moment(selectedDate).add(minutes, 'minutes').format('YYYY-MM-DD');
       setStringStorage(`servicesSelectedDate[${service.id}]`, date);
       setStringStorage(`schedulingPolicySlotInterval[${service.id}]`, '' + formGetDurationInSeconds(service?.schedulingPolicy?.timeSlotInterval));
+    }
+}
+export async function setMinCurrentDate () {
+    if(!getStringStorage('selectedMinCurrentDate')) {
+      setStringStorage('selectedMinCurrentDate', getStringStorage('selectDate'));
+    }
+  }
+export async function getDateOnServiceSelect(date: any) {
+    const selectedDateWeek = moment(date).day()
+    if (getJSONStorage('defaultBusinessHours')[selectedDateWeek]?.timeSlots?.length) {
+      setStringStorage('selectDate', moment(date).weekday(selectedDateWeek).format('YYYY-MM-DD'));
+      setMinCurrentDate();
+      if (getStringStorage('selectDate')) setStringStorage('selectedDate',getStringStorage('selectDate'));
+        return;
+    } else {
+      if (!getStringStorage('selectDate')) {
+        const nextDate = moment(date).add(1, 'days').format('YYYY-MM-DD');
+        getDateOnServiceSelect(nextDate);
+      }
+    }
+  }
+
+export async function setSelectedServiceCustomQuestions(selectedServiceId: any) {
+    try {
+      const selectedService = await getCustomQuestion(selectedServiceId);
+      console.log("setSelectedServiceCustomQuestions ~ selectedService", selectedService)
+
+    } catch (error) {
+      console.log(error);
     }
   }
 
