@@ -29,7 +29,6 @@ export function getBookingServices() {
     return httpservice()
         .get(`${constants.API.BOOKING_BUSINESSES_URL}/${businessid}/${constants.API.SERVICES}`)
         .then((res:any) => {
-            debugger;
             return res?.data?.value;
         })
         .catch(function (error: { data: any; }) {

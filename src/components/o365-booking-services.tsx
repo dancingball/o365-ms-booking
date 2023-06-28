@@ -5,6 +5,7 @@ import ServiceItem from './o365-booking-serviceItem';
 import { getJSONStorage } from '../utils/setItemStorage';
 import { getBookingServices } from '../service/BookingServices';
 import { bookingServiceData } from '../constants/res';
+import { formGetDurationInSeconds } from '../utils/getDurationAndCurrency';
 const useStyles = makeStyles({
     title: {
         fontFamily: '"WF-Segoe-UI-Light", "Segoe UI Light", "Segoe WP Light", "Segoe UI", Tahoma, Arial, Sans-Serif',
@@ -37,7 +38,7 @@ const useStyles = makeStyles({
   });
 
 interface props {
-    selectService: (id: string) => void
+    selectService: (service: any) => void
 }
 
 const Services:React.FC<props> = ({selectService}) => {
@@ -52,7 +53,6 @@ const Services:React.FC<props> = ({selectService}) => {
         async function fetchServices(){
             let myservices = await getBookingServices();
             // let myservices = bookingServiceData;
-            debugger;
             if (myservices) {
                 setServices(myservices);
             }
@@ -62,6 +62,7 @@ const Services:React.FC<props> = ({selectService}) => {
     }, [])
 
     const onSelectService = (service: any) => {
+
         selectService(service);
         setService(service);
     }

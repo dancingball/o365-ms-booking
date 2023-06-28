@@ -8,7 +8,7 @@ import TimeArea from './components/o365-booking-time';
 import Form from './components/o365-booking-form';
 import { makeStyles } from '@fluentui/react-components';
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
-import { initialize } from './storage/book';
+import { initialize, setSelectedServiceCustomQuestions } from './storage/book';
 initializeIcons();
 
 const useMainStyles = makeStyles({
@@ -32,6 +32,8 @@ function App(props: any) {
   const [service, setService] = useState('');
   const selectService = (service: any) => {
     setService(service);
+
+    setSelectedServiceCustomQuestions(service?.id);
   }
 
   useEffect(() => {
