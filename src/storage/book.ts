@@ -90,9 +90,9 @@ export async function getDateOnServiceSelect(date: any) {
 
 export async function setSelectedServiceCustomQuestions(selectedServiceId: any) {
     try {
-      const selectedService = await getCustomQuestion(selectedServiceId);
-      console.log("setSelectedServiceCustomQuestions ~ selectedService", selectedService)
-
+        const selectedService = await getCustomQuestion(selectedServiceId);
+        console.log("setSelectedServiceCustomQuestions ~ selectedService", selectedService)
+        
     } catch (error) {
       console.log(error);
     }
@@ -130,15 +130,9 @@ export async function resetSelectService() {
     // this.bookingSlots = [];
   }
 
-
-
-
-
-
 // export async function bookingServices() {
 //     try {
 //       const services = await getBookingServices();
-      
 //       this.makeServiceData(services)
 //       console.log("this.services", this.services, this.serviceCustomQuestions);
 //     } catch (error) {

@@ -6,6 +6,7 @@ import { getJSONStorage } from '../utils/setItemStorage';
 import { getBookingServices } from '../service/BookingServices';
 import { bookingServiceData } from '../constants/res';
 import { formGetDurationInSeconds } from '../utils/getDurationAndCurrency';
+
 const useStyles = makeStyles({
     title: {
         fontFamily: '"WF-Segoe-UI-Light", "Segoe UI Light", "Segoe WP Light", "Segoe UI", Tahoma, Arial, Sans-Serif',
@@ -14,11 +15,11 @@ const useStyles = makeStyles({
         display: 'block',        
         marginBottom:'30px'
     },
-    titleArea:{
+    titleArea: {
         ...shorthands.padding('16px', '0px', '16px','0px'),
         boxShadow: '0 -2px 6px 0 rgba(0, 0, 0, 0.1)'
     },
-    labelLeft:{
+    labelLeft: {
         borderTopWidth: '1px',
         borderTopStyle: 'solid',
         borderTopColor:'#eaeaea',
@@ -58,11 +59,10 @@ const Services:React.FC<props> = ({selectService}) => {
             }
             setLoading(false);
         }
-        fetchServices();    
-    }, [])
+        fetchServices();
+    }, []);
 
     const onSelectService = (service: any) => {
-
         selectService(service);
         setService(service);
     }

@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         marginTop:'20px'
     }
 
-  });
+});
 
 
 function Slot(){
