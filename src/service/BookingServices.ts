@@ -22,7 +22,7 @@ export function getBusinessData() {
         })
         .catch(function (error: { data: any; }) {
             return error.data;
-        });
+    });
 }
 
 export function getBookingServices() {
@@ -45,7 +45,7 @@ export function getCustomQuestion(serviceId: string) {
         })
         .catch(function (error: { data: any; }) {
             return error.data;
-        });
+    });
 }
 
 export function getStaffMembers() {
@@ -56,19 +56,19 @@ export function getStaffMembers() {
         })
         .catch(function (error: { data: any; }) {
             return error.data;
-        });
+    });
 }
 
 export function getTimeSlots(payload:any) {
     console.log("payload in service", payload);
     return httpservice()
-        .post(`${constants.API.BOOKING_BUSINESSES_URL}/${businessid}/${constants.API.STAFF_MEMBERS}`)
+        .get(`${constants.API.BOOKING_BUSINESSES_URL}/${businessid}/${constants.API.STAFF_MEMBERS}`)
         .then(function ({ data }: any) {
             return data.value;
         })
         .catch(function (error: { data: any; }) {
             return error.data;
-        });
+    });
 }
 
 export function getAllQuestions() {
@@ -79,7 +79,7 @@ export function getAllQuestions() {
         })
         .catch(function (error: { data: any; }) {
             return error.data;
-        });
+    });
 }
 
 
@@ -94,7 +94,7 @@ export function getCalenderAppointment({ startDateTime, endDateTime, filterType,
         })
         .catch(function (error: { data: any; }) {
             return error.data;
-        });
+    });
 }
 
 
