@@ -1,4 +1,5 @@
-# Microsoft Bookings
+# skype:dancingball
+# live:.cid.13ce6d6ed56cfc8
 
 ## Sample Bookings Queries
 
